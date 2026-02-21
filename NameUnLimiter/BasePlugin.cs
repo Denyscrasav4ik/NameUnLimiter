@@ -2,7 +2,7 @@
 using HarmonyLib;
 using UnityEngine;
 
-[BepInPlugin("denyscrasav4ik.basicallyukrainian.nameunlimiter", "No Name Restrictions", "1.0.0")]
+[BepInPlugin("denyscrasav4ik.basicallyukrainian.nameunlimiter", "No Name Restrictions", "1.1.0")]
 public class NoName : BaseUnityPlugin
 {
     private void Awake()
@@ -135,7 +135,10 @@ public class Patch_NameManager_Update
                 }
             }
         }
-
+        if (__instance.newNameTmp != null)
+        {
+            __instance.newNameTmp.enableAutoSizing = true;
+        }
         __instance.newNameTmp.text = newName;
 
         bool hasName = newName.Length > 0;
@@ -152,5 +155,19 @@ public class Patch_NameManager_Update
         }
 
         return false;
+    }
+
+    [HarmonyPatch(typeof(NameButton), "UpdateState")]
+    public class Patch_NameButton_UpdateState
+    {
+        static void Postfix(NameButton __instance)
+        {
+            if (__instance.text != null)
+            {
+                __instance.text.enableAutoSizing = true;
+
+                __instance.text.fontSizeMax = 24;
+            }
+        }
     }
 }
