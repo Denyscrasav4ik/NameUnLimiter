@@ -2,7 +2,7 @@
 using HarmonyLib;
 using UnityEngine;
 
-[BepInPlugin("denyscrasav4ik.basicallyukrainian.nameunlimiter", "No Name Restrictions", "1.2.0")]
+[BepInPlugin("denyscrasav4ik.basicallyukrainian.nameunlimiter", "No Name Restrictions", "1.0.0")]
 public class NoName : BaseUnityPlugin
 {
     private void Awake()
